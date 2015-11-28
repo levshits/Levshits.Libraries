@@ -31,6 +31,12 @@ namespace Levshits.Logic.Common
                     .ToList());
             }
         }
+
+        /// <summary>
+        /// Executes the command.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>Levshits.Logic.Common.ExecutionResult.</returns>
         public ExecutionResult ExecuteCommand(RequestBase request)
         {
             if (request == null)
@@ -39,11 +45,11 @@ namespace Levshits.Logic.Common
             }
             var handlers = CommandHandlers
                 .Where(v => v.SupportedCommands
-                .Contains(request.Id)).OrderBy(x=>x.Priority);
+                .Contains(request.Id)).OrderBy(x => x.Priority);
 
             if (!handlers.Any())
             {
-                throw new NotSupportedException(String.Format("{0} command request is not supported.", request));
+                throw new NotSupportedException($"{request} command request is not supported.");
             }
 
             ExecutionContext context = new ExecutionContext();
@@ -52,7 +58,7 @@ namespace Levshits.Logic.Common
                 context.PreviousResult = handler.Execute(request, context);
                 if (context.PreviousResult == null)
                 {
-                    throw new InvalidOperationException(string.Format("{0} return null result for {1}", handler.GetType().Name, request.Id));
+                    throw new InvalidOperationException($"{handler.GetType().Name} return null result for {request.Id}");
                 }
                 if (!context.PreviousResult.Success)
                 {
