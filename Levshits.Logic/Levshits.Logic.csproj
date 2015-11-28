@@ -69,6 +69,7 @@
     <Compile Include="Common\Errors\BusinessError.cs" />
     <Compile Include="Common\CommandBase.cs" />
     <Compile Include="Common\Errors\ErrorBase.cs" />
+    <Compile Include="Common\ExecutionContext.cs" />
     <Compile Include="Common\ExecutionResult.cs" />
     <Compile Include="Common\Repository.cs" />
     <Compile Include="Common\RequestBase.cs" />

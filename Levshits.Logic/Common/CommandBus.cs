@@ -37,14 +37,29 @@ namespace Levshits.Logic.Common
             {
                 throw new ArgumentNullException(nameof(request));
             }
-            var handler = CommandHandlers.FirstOrDefault(v => v.SupportedCommands.Contains(request.Id));
+            var handlers = CommandHandlers
+                .Where(v => v.SupportedCommands
+                .Contains(request.Id)).OrderBy(x=>x.Priority);
 
-            if (handler == null)
+            if (!handlers.Any())
             {
                 throw new NotSupportedException(String.Format("{0} command request is not supported.", request));
             }
 
-            return handler.Execute(request) ?? new ExecutionResult();
+            ExecutionContext context = new ExecutionContext();
+            foreach (var handler in handlers)
+            {
+                context.PreviousResult = handler.Execute(request, context);
+                if (context.PreviousResult == null)
+                {
+                    throw new InvalidOperationException(string.Format("{0} return null result for {1}", handler.GetType().Name, request.Id));
+                }
+                if (!context.PreviousResult.Success)
+                {
+                    return context.PreviousResult;
+                }
+            }
+            return context.PreviousResult ?? new ExecutionResult();
         }
 
         public ExecutionResult<T> ExecuteCommand<T>(RequestBase request)

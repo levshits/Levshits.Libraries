@@ -8,6 +8,6 @@ namespace Levshits.Logic.Interfaces
         int Priority { get; }
         List<string> SupportedCommands { get; }
 
-        ExecutionResult Execute(RequestBase request);
+        ExecutionResult Execute(RequestBase request, ExecutionContext context);
     }
 }

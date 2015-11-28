@@ -12,35 +12,39 @@ namespace Levshits.Logic
         protected BloBase(Repository repository)
         {
             Repository = repository;
-            Commands = new Dictionary<string, Func<RequestBase, ExecutionResult>>();
+            Commands = new Dictionary<string, Func<RequestBase, ExecutionContext, ExecutionResult>>();
         }
 
         public abstract void Init();
-        public Dictionary<string, Func<RequestBase, ExecutionResult>> Commands { get; private set; }
+        public Dictionary<string, Func<RequestBase, ExecutionContext, ExecutionResult>> Commands { get; private set; }
 
         protected Repository Repository { get; private set; }
 
-        protected virtual void RegisterCommand<T>(Func<T, ExecutionResult> command)where T : RequestBase
+        protected virtual void RegisterCommand<T>(Func<T, ExecutionContext, ExecutionResult> command)where T : RequestBase
         {
-            Commands.Add(typeof(T).Name, (request) => command((T)request));
+            Commands.Add(typeof(T).Name, (request, context) => command((T)request, context));
         }
 
         public abstract int Priority { get; }
         public virtual List<string> SupportedCommands => Commands.Keys.ToList();
+
         /// <summary>
-        ///     Executes command or query according request.
+        /// Executes the specified request.
         /// </summary>
-        public ExecutionResult Execute(RequestBase request)
+        /// <param name="request">The request.</param>
+        /// <param name="context">The context.</param>
+        /// <returns>Levshits.Logic.Common.ExecutionResult.</returns>
+        public ExecutionResult Execute(RequestBase request, ExecutionContext context)
         {
             if (request == null)
             {
                 throw new ArgumentNullException(nameof(request));
             }
 
-            Func<RequestBase, ExecutionResult> handler;
+            Func<RequestBase, ExecutionContext, ExecutionResult> handler;
             if (Commands.TryGetValue(request.Id, out handler))
             {
-                return handler.Invoke(request);
+                return handler.Invoke(request, context);
             }
 
             throw new NotSupportedException($"Request {request.Id} is not supported");
