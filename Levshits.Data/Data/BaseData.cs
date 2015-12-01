@@ -29,8 +29,7 @@ namespace Levshits.Data.Data
     ///     Represents base class for all Dao objects.
     /// </summary>
     /// <typeparam name="T">Type of entity for Dao object</typeparam>
-    public abstract class BaseData<T> : BaseData
-        where T : BaseEntity
+    public abstract class BaseData<T> : BaseData where T: BaseEntity
     {
         protected BaseData(DataProvider dataProvider)
             : base(dataProvider)
@@ -80,7 +79,7 @@ namespace Levshits.Data.Data
         {
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
             DataProvider.Delete(entity);
         }
@@ -93,7 +92,7 @@ namespace Levshits.Data.Data
         {
             if (query == null)
             {
-                throw new ArgumentNullException("query");
+                throw new ArgumentNullException(nameof(query));
             }
             if (paging == null)
             {
