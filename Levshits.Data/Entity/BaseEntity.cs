@@ -1,4 +1,6 @@
-﻿namespace Levshits.Data.Entity
+﻿using System;
+
+namespace Levshits.Data.Entity
 {
     /// <summary>
     /// Class EntityBase.
@@ -9,7 +11,7 @@
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
-        public virtual int Id { get; set; }
+        public virtual Guid Id { get; set; }
 
         /// <summary>
         /// Gets or sets the version.
