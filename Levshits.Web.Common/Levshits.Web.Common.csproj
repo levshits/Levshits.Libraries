@@ -82,10 +82,6 @@
       <Project>{096BE68F-D51F-4620-AFF4-304ED4AFA547}</Project>
       <Name>Levshits.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Levshits.Logic\Levshits.Logic.csproj">
-      <Project>{C071B4B7-811F-45EB-8248-246E95393B9E}</Project>
-      <Name>Levshits.Logic</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Attribute\" />

@@ -1,4 +1,4 @@
-﻿namespace Levshits.Logic.Common
+﻿namespace Levshits.Data.Common
 {
     public class ExecutionContext
     {

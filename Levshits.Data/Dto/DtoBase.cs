@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Levshits.Logic.Dto
+namespace Levshits.Data.Dto
 {
     [Serializable]
     public class DtoBase

@@ -1,4 +1,4 @@
-﻿namespace Levshits.Logic.Common.Errors
+﻿namespace Levshits.Data.Common.Errors
 {
     public class SecurityError
     {

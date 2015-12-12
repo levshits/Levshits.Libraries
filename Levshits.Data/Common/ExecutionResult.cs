@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Levshits.Logic.Common.Errors;
+using Levshits.Data.Common.Errors;
 
-namespace Levshits.Logic.Common
+namespace Levshits.Data.Common
 {
     public class ExecutionResult
     {
