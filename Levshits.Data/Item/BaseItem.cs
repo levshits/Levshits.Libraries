@@ -1,4 +1,6 @@
-﻿namespace Levshits.Data.Item
+﻿using System;
+
+namespace Levshits.Data.Item
 {
     /// <summary>
     /// Class BaseItem.
@@ -9,7 +11,7 @@
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
-        public virtual int Id { get; set; }
+        public virtual Guid Id { get; set; }
 
         /// <summary>
         /// Gets or sets the version.
