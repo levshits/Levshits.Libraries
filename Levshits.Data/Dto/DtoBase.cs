@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Levshits.Logic.Dto
+namespace Levshits.Data.Dto
 {
     [Serializable]
     public class DtoBase
@@ -9,7 +9,7 @@ namespace Levshits.Logic.Dto
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Gets or sets the version.

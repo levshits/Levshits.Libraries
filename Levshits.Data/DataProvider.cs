@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Linq.Expressions;
+using Common.Logging;
 using Levshits.Data.Common;
 using Levshits.Data.Entity;
 using NHibernate;
@@ -15,6 +16,7 @@ namespace Levshits.Data
     {
         private readonly ISessionFactory _factory;
         private readonly ISessionStorage _storage;
+        private readonly ILog _log = LogManager.GetLogger(typeof (DataProvider));
 
         /// <summary>
         /// 	Creates new instance of <see cref = "DataProvider" />.
@@ -70,8 +72,9 @@ namespace Levshits.Data
                     session.Transaction.Commit();
                 }
             }
-            catch
+            catch(Exception e)
             {
+                _log.Error(e);
                 RollbackTransaction();
                 throw;
             }

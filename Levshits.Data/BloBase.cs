@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Levshits.Data.Common;
 using Levshits.Data.Entity;
-using Levshits.Logic.Common;
-using Levshits.Logic.Interfaces;
+using Levshits.Data.Interfaces;
 
-namespace Levshits.Logic
+namespace Levshits.Data
 {
     public abstract class BloBase: ICommandHandler
     {

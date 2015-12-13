@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Levshits.Logic.Common;
+using Levshits.Data.Common;
 
-namespace Levshits.Logic.Interfaces
+namespace Levshits.Data.Interfaces
 {
     public interface ICommandHandler
     {

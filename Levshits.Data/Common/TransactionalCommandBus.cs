@@ -1,13 +1,14 @@
 ﻿using System;
-using Levshits.Data.Common;
-using Levshits.Logic.Interfaces;
+using Common.Logging;
+using Levshits.Data.Interfaces;
 
-namespace Levshits.Logic.Common
+namespace Levshits.Data.Common
 {
     public class TransactionalCommandBus: ICommandBus
     {
         private readonly ICommandBus _commandBus;
         private readonly IDataProvider _dataProvider;
+        private readonly ILog _log = LogManager.GetLogger(typeof (TransactionalCommandBus));
         public TransactionalCommandBus(ICommandBus commandBus, IDataProvider dataProvider)
         {
             _commandBus = commandBus;
@@ -24,6 +25,7 @@ namespace Levshits.Logic.Common
             }
             catch(Exception e)
             {
+                _log.Error(e);
                 _dataProvider.RollbackTransaction();
                 return new ExecutionResult() { Success = false };
             }
@@ -43,6 +45,7 @@ namespace Levshits.Logic.Common
             }
             catch (Exception e)
             {
+                _log.Error(e);
                 _dataProvider.RollbackTransaction();
                return new ExecutionResult<T>() {Success = false};
             }

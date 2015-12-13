@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
-using Levshits.Logic.Common;
-using Levshits.Logic.Interfaces;
+using Levshits.Data.Interfaces;
 
 namespace Levshits.Web.Common.Controllers
 {

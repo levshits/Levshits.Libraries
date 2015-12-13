@@ -149,7 +149,7 @@ namespace Levshits.Data.Data
         /// <param name="fieldName"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public virtual bool IsUniqueField(int id, string fieldName, string value)
+        public virtual bool IsUniqueField(Guid id, string fieldName, string value)
         {
             var query = DataProvider.QueryOver<T>();
             query.Where(x => x.Id != id).And(Restrictions.Eq(fieldName, value));

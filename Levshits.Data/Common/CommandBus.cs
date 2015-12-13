@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Levshits.Logic.Interfaces;
+using Levshits.Data.Interfaces;
 using Spring.Context;
 using Spring.Context.Support;
 
-namespace Levshits.Logic.Common
+namespace Levshits.Data.Common
 {
     public class CommandBus: ICommandBus
     {
